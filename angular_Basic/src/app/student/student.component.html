@@ -1,0 +1,51 @@
+
+
+<div *ngIf="student" class="container stu-table">
+    <div class="headers">
+        <h2 class="table-title">Manage Students</h2>
+        <button class="btn add" (click)="openform()">Add Student</button>
+    </div>
+    
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>NAME</th>
+                <th>AGE</th>
+            </tr>
+        </thead>
+        <tbody class="text-center">
+            <tr *ngFor="let stu of student">
+                <td>{{stu['id']}}</td>
+                <td>{{stu['name']}}</td>
+                <td>{{stu['age']}}</td>
+                <td>
+                    <button class="btn btn-primary" (click)="openform(stu)">EDIT</button>
+                </td>
+                <td>
+                    <button class="btn btn-danger" (click)="deletestudent(stu['id'])">DELETE</button>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</div>
+<div class="form-wrapper" *ngIf="showform">
+    <div class="student-form">
+        <h2 class="text-center text-info">{{formHeader}}</h2>
+        <div class="group">
+            <label for="s_name">NAME  </label>
+            <input type="text" class="formControl" [(ngModel)]="studentname" name="s_name">
+        </div>
+        <div class="group">
+            <label for="s_age">AGE  </label>
+            <input type="number" class="formControl" [(ngModel)]="studentage" name="s_age">
+        </div>
+        <div class="action">  
+            <button class="btn btn-primary Save" (click)="saveform()">Save</button>
+        
+            <button class="btn btn-danger Cancel" (click)="cancelform()">Cancel</button>
+        </div>
+    </div>
+</div>
+
